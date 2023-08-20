@@ -64,6 +64,7 @@ color_palette = {
 # Streamlit app layout
 st.title('Hula Lake Environmental Data')
 
+st.dataframe(data)
 
 # Quality Check Button
 with st.expander("Run Quality Check"):
