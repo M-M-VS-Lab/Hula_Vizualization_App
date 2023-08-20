@@ -120,7 +120,7 @@ for idx, column in enumerate(columns_to_check):
 st.header('Environmental Data Time Series')
 
 # Columns to group in the same graph
-grouped_columns = ['NET_Avg', 'H', 'LE']
+grouped_columns = ['NET_Avg', 'H', 'LE','G']
 temp_columns = ['air_temperature', 'Temp_Surface_Avg', 'Temp_Deep_Avg']
 co2_col = ['co2_flux']
 
