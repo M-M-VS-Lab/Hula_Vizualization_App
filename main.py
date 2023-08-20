@@ -40,6 +40,9 @@ def download_file_from_drive(file_id, destination_path):
   data['TIMESTAMP'] = pd.to_datetime(data['TIMESTAMP'])  # Convert timestamp to datetime
   data['air_temperature'] = data['air_temperature']-273.15
   
+  # Clac G from Energy Balance
+  data['G'] = data[''NET_Avg']-data['H']- data['LE']
+  
   return data
   
 
@@ -125,13 +128,13 @@ remaining_columns = [col for col in color_palette.keys() if col not in grouped_c
 
 # create sub-data with energy balance columns
 sub_data = data[grouped_columns]
-sub_data.columns = ['Rn', 'H', 'LE']
+sub_data.columns = ['Rn', 'H', 'LE','G']
 sub_data['TIMESTAMP'] = data['TIMESTAMP'].values
 
 # Grouped columns plot
 grouped_fig = px.line(sub_data, x="TIMESTAMP", y=sub_data.columns,
                   hover_data={"TIMESTAMP": "|%B %d, %Y"},
-                  color_discrete_sequence=['#ffdd00','#8f00ff','#01befe'],
+                  color_discrete_sequence=['#ffb703','#ffdd00','#8f00ff','#01befe'],
                   title='Time Series of Energy Balance')
 
 grouped_fig.update_xaxes(rangeslider_visible=True)
